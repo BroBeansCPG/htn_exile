@@ -1,0 +1,4 @@
+//<'exile_server_config.pbo' properties via Mikero's dos tools, dll version 8.35>
+prefix=exile_server_config;
+//PboType=Arma Addon;
+//</properties>
