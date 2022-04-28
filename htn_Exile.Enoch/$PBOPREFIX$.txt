@@ -1,0 +1,4 @@
+//<'Exile.Altis.pbo' properties via Mikero's dos tools, dll version 8.35>
+prefix=Exile.Altis;
+//PboType=Arma Mission Addon;
+//</properties>

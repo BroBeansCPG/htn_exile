@@ -26,6 +26,8 @@ class CfgPatches
 class CfgBuildings
 {
 	
+	#include "livoniaBuilding.cpp"
+
 	///////////////////////////////////////////////////////////////////////////
 	// Castles & Lighthouses & Life Guard Towers
 	///////////////////////////////////////////////////////////////////////////
@@ -5531,18 +5533,18 @@ class CfgSettings
 			permanentlyDeleteTime = 3;
 			
 			// Remove all territories (and contructions + containers in it) that were not paid after X days
-			territoryLifeTime = 7;
+			territoryLifeTime = 1000;
 
 			// Remove all containers outside of territories that have not been used for X days
 			// Example: Tents
-			containerLifeTime = 10;
+			containerLifeTime = 1000;
 
 			// Remove all constructions outside of territories that are older than X days or not moved for X days 
 			// Example: Work Benches
-			constructionLifeTime = 2;
+			constructionLifeTime = 7;
 
 			// Remove all vehicles that were not moved/used for X days
-			vehicleLifeTime = 3;
+			vehicleLifeTime = 7;
 			
 			// Set safe as abandoned
 			abandonedTime = 7;
@@ -5578,11 +5580,11 @@ class CfgSettings
 		class Frags
 		{
 			domination = 80;			// Keeps killing the same guy
-			letItRain = 150;			// MG, also vehicle MGs
+			letItRain = 100;			// MG, also vehicle MGs
 			humiliation = 300;			// Axe
-			passenger = 400;			// Out of car/chopper/boat
-			roadKill = 200;				// :)
-			bigBird = 600;				// Roadkill, but with chopper/plane
+			passenger = 100;			// Out of car/chopper/boat
+			roadKill = 100;				// :)
+			bigBird = 100;				// Roadkill, but with chopper/plane
 			chuteGreaterChopper = 1000;	// Someone flies into chute and chopper/plane explodes	
 		};
 
@@ -5590,11 +5592,11 @@ class CfgSettings
 		{
 			unlucky = 1; // Dying for an unknown reason costs you 1% respect
 			crash = 1; // Crashing your car costs you 1% respect
-			suicide = 2; // Comitting suicide costs you 2% of your respect
-			friendyFire = 3; // Friendly fire costs you 3% 
-			npc = 4; // Being killed by an NPC costs you 4%
+			suicide = 5; // Comitting suicide costs you 2% of your respect
+			friendyFire = 1; // Friendly fire costs you 3% 
+			npc = 10; // Being killed by an NPC costs you 4%
 			bambiKill = 5; // Killing a bambi costs you 5%
-			frag = 5; // Killing someone will get you 5% and remove 5% from the victim
+			frag = 10; // Killing someone will get you 5% and remove 5% from the victim
 		};
 
 		class Handcuffs 
@@ -5611,7 +5613,7 @@ class CfgSettings
 			per100mDistance = 10;
 
 			// First blood after server restart
-			firstBlood = 100;
+			firstBlood = 25;
 
 			// If you kill someone while you are in your own territory
 			homie = 20;
@@ -5642,7 +5644,7 @@ class CfgSettings
 	class KillFeed
 	{
 		// Shows a kill feed for well kills
-		showKillFeed = 1;
+		showKillFeed = 0;
 	};
 
 	///////////////////////////////////////////////////////////////////////
@@ -5658,10 +5660,7 @@ class CfgSettings
 		 */
 		loadOut[] = 
 		{
-			"ItemCompass",
-			"ItemMap", // Because why not
 			"Exile_Item_XM8",
-			"ItemRadio",
 			"Exile_Item_PlasticBottleFreshWater"
 		};
 
@@ -5671,7 +5670,7 @@ class CfgSettings
 		 * 1 = On
 		 * 0 = Off
 		 */
-		parachuteSpawning = 1;
+		parachuteSpawning = 0;
 
 		/**
 		 * Enables or disables halo jumping. Only applies 
@@ -5730,24 +5729,24 @@ class CfgSettings
 		* smaller the number more vehicles,
 		* you get the point
 		*/
-		vehiclesGridSize = 2200;
+		vehiclesGridSize = 5000;
 
 		/**
 		* Vehicle ammount per grid
 		* kinda self explanitory
 		*/
-		vehiclesGridAmount = 2;
+		vehiclesGridAmount = 1;
 
 		/**
 		* Creates global markers for vehicle spawn tweeking,
 		* after you are satisfied with vehicle ammount and spread set this to 0.
 		*/
-		vehiclesDebugMarkers = 0;
+		vehiclesDebugMarkers = 1;
 
 		/**
 		* The server will apply random damage up to this value when spawning a vehicle.
 		*/
-		damageChance = 20; // 20% chance for a vehicle HITPOINT to be damaged
+		damageChance = 50; // 20% chance for a vehicle HITPOINT to be damaged
 		maximumDamage = 0.9;
 
 		/**
@@ -5762,13 +5761,13 @@ class CfgSettings
 		 * all vehicles without fuel.
 		 */
 		randomizeFuel = 1;
-		fuel = 1;
+		fuel = 0.5;
 
 		/**
 		 * Works exactly the same as the fuel setting ^
 		 */
 		randomizeAmmo = 1;
-		ammo = 1;
+		ammo = 0.25;
 
 		// Stuff to spawn on water
 		water[] = 
@@ -5780,10 +5779,7 @@ class CfgSettings
 			"Exile_Boat_RubberDuck_Digital",
 			"Exile_Boat_RubberDuck_Orange",
 			"Exile_Boat_RubberDuck_Blue",
-			"Exile_Boat_RubberDuck_Black",
-			"Exile_Boat_SDV_CSAT",
-			"Exile_Boat_SDV_Digital",
-			"Exile_Boat_SDV_Grey"
+			"Exile_Boat_RubberDuck_Black"
 		};
 
 		// Stuff to spawn on roads
@@ -5817,7 +5813,7 @@ class CfgSettings
 		 * 0 = off
 		 * 1 = on
 		 */
-		nightVision = 1;
+		nightVision = 0;
 
 		/**
 		 * Enables or disables thermal optics on ALL vehicles
@@ -5850,7 +5846,7 @@ class CfgSettings
 			weather type of be more dominant compared to others, add it multiple times
 		*/
 		//keyframes[] = {"Sunny", "Cloudy", "Thunderstorm"}; 
-		keyframes[] = {"Sunny"}; 
+		keyframes[] = {"Sunny", "Sunny", "Sunny", "Cloudy", "Cloudy", "Thunderstorm"}; 
 
 		/*
 			This is a keyframe. Look up the BIKI to get more details about the parameters
@@ -6001,7 +5997,7 @@ class CfgSettings
 			If this is enabled, Exile developers will spawn with a ton of pop tabs.
 			We will have a hard time debugging things if you disable this.
 		*/
-		devFriendyMode = 1;
+		devFriendyMode = 0;
 
 		devs[] = 
 		{
@@ -6022,7 +6018,7 @@ class CfgSettings
 		/*
 			A list of events that are active
 		*/
-		enabledEvents[] = {"SupplyBox", "AbandonedSafe", "AmbientFlyOver", "EarthQuake"}; 
+		enabledEvents[] = {"AmbientFlyOver"}; 
 		enabledEscapeEvents[] = {"EscapeSupplyBox", "AmbientFlyOver", "EarthQuake"}; 
 
 		class EarthQuake 
@@ -6045,10 +6041,10 @@ class CfgSettings
 			function = "ExileServer_system_event_supplyBox_start";
 			minTime = 60; // minutes
 			maxTime = 180; // minutes
-			minimumPlayersOnline = 10;
+			minimumPlayersOnline = 1;
 			dropRadius = 500; // 500m around an airport (including the main airport on Altis!)
 			dropAltitude = 100; // altitude of the drop
-			markerTime = 10; // minutes
+			markerTime = 0; // minutes
 
 			/*
 				These are different types of boxes can be dropped.
